@@ -1,0 +1,88 @@
+{# empty Twig template #}
+
+{% set params = {  'forum_id': forum_id, 'action': action, 'offset': offset , 'limit': '10'} %}
+
+{{ set_assets('applications/Forum/assets/css/forum.css') }}
+{{ set_assets('applications/Forum/assets/js/forum.js') }}
+
+{% set items = callFunction( "Forum.Forum.Code.Models.ForumModel", 'getForumCategories', params ) %}
+{% set total = callFunction( "Forum.Forum.Code.Models.ForumModel", 'getTotalCategories', params ) %}
+
+
+<div class="forum-list">
+    <div class="forum">
+        <div class="forum-head bg-light-blue">
+
+        </div>
+
+        <div class="forum-body">
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <tbody>
+                        {% if items|length > 0 %}
+                            {% for category in items %}
+
+                                {% set category_url = generate_url('forum.categories.detail', {'id':category.id}) %}
+                                {% set user_url = generate_url('users.users.detail', {'id':category.latest_post.user_id}) %}
+                                {% set post_url = generate_url('forum.topics.detail', {'id':category.latest_post.id}) %}
+
+                                <tr>
+                                    <td>
+                                        <b>
+                                            <a href="{{ category_url  }}" title="{{ category.title }}">
+                                                {{ category.title }}
+                                            </a>
+                                        </b>
+                                        <br>
+                                        {{ category.description }}
+                                    </td>
+                                    <td>
+                                        {{ category.total_topics|number_format() }} Topics<br>
+                                        {{ category.total_comments|number_format() }} Comments
+                                    </td>
+                                    <td>
+
+                                        {% if category.latest_post.title != '' %}
+                                            <b>Latest Topic: </b> <a href="{{ post_url  }}" title="{{ category.latest_post.title }}">{{ category.latest_post.title }}</a> <br>
+                                            <b>By: </b> <a href="{{ user_url  }}" title="{{ category.latest_post.user_name }}">{{  category.latest_post.user_name }}</a> <br>
+                                            <b>On: </b> {{  category.latest_post.date_created|date('d M Y H:i') }}
+                                        {% else %}
+                                            No Posts In this Category.
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="clearfix"></div>
+{% if total > 10 %}
+
+    <div class="forums-navigation">
+
+        {% if offset %}
+            <div class="previous-forums pull-left">
+                <a class="btn btn-default btn-sm btn-flat" forum_id="{{ forum_id }}" offset="{{ offset|default('0') }}" action="previous" title="Previous">
+                    <i class="fa fa-arrow-left"></i>
+                    Pre
+                </a>
+            </div>
+        {% endif %}
+
+        {% if (offset + 10) < total %}
+            <div class="next-forums pull-right">
+                <a class="btn btn-default btn-sm btn-flat" forum_id="{{ forum_id }}" offset="{{ offset|default('0')  }}" action="next" title="Next">
+                    <i class="fa fa-arrow-right"></i>
+                    Next 
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+{% endif %}

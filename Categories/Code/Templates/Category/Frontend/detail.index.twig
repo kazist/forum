@@ -1,0 +1,19 @@
+{# empty Twig template #}
+{% import "form.macro.twig" as forms %}
+
+
+<h1>{{ item.title }}</h1>
+
+<div class="business-posted-date">
+    <i class="fa fa-clock-o"></i> Posted:  {{ item.date_created|date('d M Y H:i') }} &nbsp;&nbsp;
+</div>
+
+<div> 
+    <div class="clr"></div>
+    <hr>
+    <div class="forum-categories-listing">
+        {% include "category.topic.list.twig" ignore missing with {'category_id': item.id , 'action': 'latest'}  %}
+    </div>
+    <div class="clr"></div>
+    <br>
+</div>

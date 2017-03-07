@@ -1,0 +1,61 @@
+{# empty Twig template #}
+
+{{ set_assets('applications/Forum/Components/assets/css/forum.css') }}
+
+<div class="forum-list">
+    <div class="forum">
+
+        <div class="forum-head bg-light-blue">
+        </div>
+
+        <div class="forum-body">
+            {% if items|length > 0 %}
+                {% for item in items %}
+
+                    {% set item_url = friendly_url('app=forum&com=forum&subset=forum&view=detail&id='~ item.id) %}
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <tbody>
+
+                                {% set category_url = friendly_url('app=forum&com=category&subset=category&view=detail&id='~ item.id) %}
+                                {% set user_url = friendly_url('app=users&com=users&subset=users&view=detail&id='~ item.latest_post.user_id) %}
+                                {% set post_url = friendly_url('app=forum&com=topic&subset=topic&view=detail&id='~ item.latest_post.id) %}
+
+                                <tr>
+                                    <td>
+                                        <b>
+                                            <a href="{{ category_url  }}" title="{{ item.title }}">
+                                                {{ item.title }}
+                                            </a>
+                                        </b><br>
+                                        {{ item.description }}
+                                    </td>
+                                    <td>
+                                        {{ item.total_topics|number_format() }} Topics<br>
+                                        {{ item.total_comments|number_format() }} Comments
+                                    </td>
+                                    <td>
+
+                                        {% if item.latest_post.title != '' %}
+                                            <b>Latest Topic: </b> <a href="{{ post_url  }}" title="{  item.latest_post.title }}">{{  item.latest_post.title }}</a> <br>
+                                            <b>By: </b> <a href="{{ user_url  }}" title="{{  item.latest_post.user_name }}">{{  item.latest_post.user_name }}</a> <br>
+                                            <b>On: </b> {{  item.latest_post.date_created|date('d M Y H:i') }}
+                                        {% else %}
+                                            No Posts In this Category.
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="clr"></div>
+
+{% include "items.pagination.twig"%}
+

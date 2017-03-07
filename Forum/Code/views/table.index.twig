@@ -1,0 +1,87 @@
+{# empty Twig template #}
+
+{% import "form.macro.twig" as forms %}
+
+{{ set_assets('applications/Forum/assets/css/forum.css') }}
+
+{% set action_url =  generate_url('siasa.counties') %}
+
+<form class="form-horizontal" action="{{ action_url }}" method="post" role="form"  enctype="multipart/form-data">
+
+    <div class="forum-list">
+        {% if items|length > 0 %}
+            {% for item in items %}
+
+                {% set item_url = generate_url('forum.forum.detail', {'id':item.id})  %}
+
+                <div class="forum">
+                    <div class="forum-head bg-light-blue">
+                        <a href="{{ item_url  }}" title=' {{ item.title }}'>
+                            {{ item.title }}
+                        </a>
+                    </div>
+
+                    <div class="forum-body">
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                <tbody>
+                                    {% if item.categories|length > 0 %}
+                                        {% for category in item.categories %}
+
+                                            {% set category_url = generate_url('forum.categories.detail', {'id':category.id}) %}
+                                            {% set user_url = generate_url('users.users.detail', {'id':category.latest_post.user_id}) %}
+                                            {% set post_url = generate_url('forum.topics.detail', {'id':category.latest_post.id}) %}
+
+                                            <tr>
+                                                <td>
+                                                    <b>
+                                                        <a href="{{ category_url  }}" title='{{ category.title }}'>
+                                                            {{ category.title }}
+                                                        </a>
+                                                    </b><br>
+                                                    {{ category.description }}
+                                                </td>
+                                                <td>
+                                                    {{ category.total_topics|number_format() }} Topics<br>
+                                                    {{ category.total_comments|number_format() }} Comments
+                                                </td>
+                                                <td>
+
+                                                    {% if category.latest_post.title != '' %}
+                                                        <b>Latest Topic: </b> <a href="{{ post_url  }}" title='{{  category.latest_post.title }}'>{{  category.latest_post.title }}</a> <br>
+                                                        <b>By: </b> <a href="{{ user_url  }}" title='{{  category.latest_post.user_name }}'>{{  category.latest_post.user_name }}</a> <br>
+                                                        <b>On: </b> {{  category.latest_post.date_created|timeago }}
+                                                    {% else %}
+                                                        No Posts In this Category.
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="forum-foot">
+                        <i class="fa fa-clock-o"></i> &nbsp; {{ item.date_created|timeago }}
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="clearfix"></div>
+
+    {% include "items.pagination.twig"%}
+
+    {% include "form.hidden.twig" %}
+
+
+    <div class="clr clearfix"></div>
+
+    {{ forms.input('_token' ) }} 
+
+</form>
+

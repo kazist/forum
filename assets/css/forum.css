@@ -1,0 +1,55 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 15, 2015, 10:04:41 AM
+    Author     : sbc
+*/
+
+.forum-list .forum{
+    margin-bottom: 10px;
+}
+
+.forum-list .forum table{
+    margin-bottom: 0;
+}
+
+.forum-list .forum table tr{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f6f6f6+100 */
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+}
+
+.forum-list .forum .forum-head, .forum-list .forum .forum-foot{
+    padding:5px;
+}
+
+.forum-list .forum .forum-body, .forum-list .forum .forum-foot{
+    border:1px solid #ddd;
+}
+
+.forum-list .forum .forum-head{
+    font-size: 16px;
+}
+
+.forum-list .forum .forum-head a{
+    color:white;
+}
+
+.forum-category-list .forum-category{
+    border-bottom:1px solid #ddd;
+}
+
+.topic-owner{
+    margin:15px 0;
+    padding: 5px;
+    border:2px dotted #ddd;
+}

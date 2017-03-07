@@ -1,0 +1,10 @@
+
+{
+    "name": "forum",
+    "title": "Forum Listing",
+    "icon": "icons\/forum.png",
+    "extension": "component",
+    "path": "forum\/",
+    "description": "Forum Listing",
+    "version": 1
+}

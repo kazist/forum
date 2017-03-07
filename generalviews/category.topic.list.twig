@@ -1,0 +1,90 @@
+{# empty Twig template #}
+
+{% set params = {  'category_id': category_id, 'action': action, 'offset': offset , 'limit': '10'} %}
+
+{{ set_assets('applications/Forum/assets/css/forum.css') }}
+{{ set_assets('applications/Forum/assets/js/forum.js') }}
+
+{% set items = callFunction( "Forum.Categories.Code.Models.CategoriesModel", 'getCategoryTopics', params ) %}
+{% set total = callFunction( "Forum.Categories.Code.Models.CategoriesModel", 'getTotalCategoryTopics', params ) %}
+
+<div class="forum-category-list">
+
+    {% if items|length > 0 %}
+        {% for item in items %}
+
+            {% set item_url = generate_url('forum.topics.detail', {'id':item.id}) %}
+            {% set category_url = generate_url('forum.categories.detail', {'id':item.id}) %}
+            {% set user_url = generate_url('users.users.detail', {'id':item.user_id}) %}
+            {% set post_url = generate_url('forum.topics.detail', {'id':item.id}) %}
+
+            <div class="forum-category">
+
+                <b>
+                    <a href="{{ item_url  }}" title="{{ item.title }}">
+                        {{ item.title }}
+                    </a>
+                </b>
+                <br>
+                <div>
+                    <a href="{{ user_url  }}" title="{{ item.title }}">
+                        <img src="{{ resized_image(item.article_image.file, 90,90) }}" alt="{{ item.title }}" title="{{ item.title }}" align="left">
+                    </a>
+
+                    <a href="{{ user_url  }}" title="User Name ">
+                        User Name 
+                    </a>
+
+                    &nbsp;&nbsp;
+                    <a class="bg-green" href="{{ item_url  }}" title=" Follow Topic ">
+                        &nbsp; Follow Topic &nbsp; 
+                    </a>
+
+                    &nbsp;&nbsp;
+                    <span>
+                        <i class="fa fa-clock-o"></i> 
+                        {{  item.date_created|date('d M Y H:i') }}
+                    </span>  
+                    <br>
+                </div>
+                <div class="category-description">
+                    {{ item.description|striptags|truncate(200)|raw }}
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+
+        No Topics added To Category.
+
+    {% endif %}
+</div>
+
+
+<div class="clearfix"></div>
+{% if total > 10 %}
+
+    <div class="forums-navigation">
+
+        {% if offset %}
+            <div class="previous-forums pull-left">
+                <a class="btn btn-default btn-sm btn-flat" forum_id="{{ forum_id }}" offset="{{ offset|default('0') }}" action="previous">
+                    <i class="fa fa-arrow-left"></i>
+                    Pre
+                </a>
+            </div>
+        {% endif %}
+
+        {% if (offset + 10) < total %}
+            <div class="next-forums pull-right">
+                <a class="btn btn-default btn-sm btn-flat" forum_id="{{ forum_id }}" offset="{{ offset|default('0')  }}" action="next">
+                    <i class="fa fa-arrow-right"></i>
+                    Next 
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+{% endif %}

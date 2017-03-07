@@ -1,0 +1,10 @@
+{
+    "title": "Forum",
+    "alias": "forum",
+    "table_name": "forum_forum",
+    "title_field": "title",
+    "content_field": "description",
+    "image_field": "image",
+    "published": "1",
+    "is_processed": "0"
+}

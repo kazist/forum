@@ -1,0 +1,18 @@
+{
+    "ForumCategories": {
+        "namespace": "Forum\\Categories",
+        "controller": "CategoriesController"
+    },
+    "ForumForum": {
+        "namespace": "Forum\\Forum",
+        "controller": "ForumController"
+    },
+    "ForumTopics": {
+        "namespace": "Forum\\Topics",
+        "controller": "TopicsController"
+    },
+    "ForumTopicsFiles": {
+        "namespace": "Forum\\Topics\\Files",
+        "controller": "FilesController"
+    }
+}
