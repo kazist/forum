@@ -1,10 +1,10 @@
 
 {
-    "name": "forum",
+    "name": "kazist/forum",
     "title": "Forum Listing",
     "icon": "icons\/forum.png",
     "extension": "component",
-    "path": "forum\/",
+    "path": "applications/Forum/",
     "description": "Forum Listing",
     "version": 1
 }
