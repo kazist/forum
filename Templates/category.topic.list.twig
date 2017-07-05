@@ -13,10 +13,10 @@
     {% if items|length > 0 %}
         {% for item in items %}
 
-            {% set item_url = friendly_url('app=forum&com=topic&subset=topic&view=detail&id='~ item.id) %}
-            {% set category_url = friendly_url('app=forum&com=category&subset=category&view=detail&id='~ item.id) %}
-            {% set user_url = friendly_url('app=users&com=users&subset=users&view=detail&id='~ item.user_id) %}
-            {% set post_url = friendly_url('app=forum&com=topic&subset=topic&view=detail&id='~ item.id) %}
+            {% set item_url = generate_url('forum.topics.detail',{'id': item.id}) %}
+            {% set category_url = generate_url('forum.categories.detail',{'id': item.id}) %}
+            {% set user_url = generate_url('users.users.detail',{'id': item.user_id}) %}
+            {% set post_url = generate_url('forum.topics.detail',{'id': item.id}) %}
 
             <div class="forum-category">
 

@@ -22,9 +22,9 @@
                         {% if items|length > 0 %}
                             {% for category in items %}
 
-                                {% set category_url = friendly_url('app=forum&com=category&subset=category&view=detail&id='~ category.id) %}
-                                {% set user_url = friendly_url('app=users&com=users&subset=users&view=detail&id='~ category.latest_post.user_id) %}
-                                {% set post_url = friendly_url('app=forum&com=topic&subset=topic&view=detail&id='~ category.latest_post.id) %}
+                                {% set category_url = friendly_url('app=forum.categories.detail', {'id':category.id}) %}
+                                {% set user_url = friendly_url('users.users.detail', {'id': category.latest_post.user_id}) %}
+                                {% set post_url = friendly_url('forum.topics.detail', {'id', category.latest_post.id}) %}
 
                                 <tr>
                                     <td>
