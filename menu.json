@@ -2,22 +2,26 @@
     "title": "Forum",
     "description": "Forum",
     "alias": "forum",
-    "icon": "fa-picture-o", "home_link": "forum\/topics",
+    "icon": "fa fa-comments",
+    "home_link": "forum\/topics",
     "is_core": "1",
     "menulist": [{
             "title": "Forum",
             "alias": "admin_forum_forum",
             "url": "admin/forum/forum",
+            "icon": "fa fa-comments",
             "children": []
         }, {
             "title": "Categories",
             "alias": "admin_forum_categories",
             "url": "admin/forum/categories",
+            "icon": "fa fa-navicon",
             "children": []
         }, {
             "title": "Topics",
             "alias": "admin_forum_topics",
             "url": "admin/forum/topics",
+            "icon": "fa fa-tasks",
             "children": []
         }]
 }
