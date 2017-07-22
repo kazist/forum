@@ -4,6 +4,7 @@
     "alias": "forum",
     "icon": "fa fa-comments",
     "home_link": "forum\/topics",
+    "path": "applications/Forum",
     "is_core": "1",
     "menulist": [{
             "title": "Forum",

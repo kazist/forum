@@ -4,7 +4,7 @@
     "keywords": ["kazist", "forum manager"],
     "homepage": "https://github.com/kazist/forum",
     "license": "LGPL-3.0",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "authors": [
         {
             "name": "Dedan Irungu",
