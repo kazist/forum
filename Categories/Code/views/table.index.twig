@@ -45,7 +45,7 @@
                                             {% if item.latest_post.title != '' %}
                                                 <b>Latest Topic: </b> <a href="{{ post_url  }}" title="{  item.latest_post.title }}">{{  item.latest_post.title }}</a> <br>
                                                 <b>By: </b> <a href="{{ user_url  }}" title="{{  item.latest_post.user_name }}">{{  item.latest_post.user_name }}</a> <br>
-                                                <b>On: </b> {{  item.latest_post.date_created|date('d M Y H:i') }}
+                                                <b>On: </b> {{  item.latest_post.date_created|date('d M Y H:i',  document.timezone) }}
                                             {% else %}
                                                 No Posts In this Category.
                                             {% endif %}
