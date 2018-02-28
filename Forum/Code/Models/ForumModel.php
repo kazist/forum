@@ -134,7 +134,7 @@ class ForumModel extends BaseModel {
         $query->select('ft.*, uu.name as user_name, uu.id as user_id');
         $query->from('#__forum_topics', 'ft');
         $query->leftJoin('ft', '#__users_users', 'uu', 'uu.id = ft.created_by');
-        $query->where('category_id=' . $category_id);
+        $query->where('category_id=:category_id');
         $query->setParameter('category_id', $category_id);
         $query->orderBy('ft.id ', 'DESC');
 
